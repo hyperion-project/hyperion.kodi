@@ -5,7 +5,7 @@
 		<setting id="screensaver_enable" type="bool" label="32007" default="false" subsetting="true" enable="eq(-1,true)"/>
 		<setting id="hyperion_ip" type="ipaddress" label="32003" default="127.0.0.1" />
 		<setting id="hyperion_port" type="number" label="32004" default="19445" />
-		<setting id="hyperion_priority" type="number" label="32004" default="900" />
+		<setting id="hyperion_priority" type="number" label="32005" default="900" />
 		<setting id="reconnect_timeout" type="number" label="32006" default="30" />
 	</category>
 </settings>
