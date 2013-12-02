@@ -49,34 +49,6 @@ class MyMonitor (xbmc.Monitor):
 		self.__settings.screensaver = True
 
 		
-class MyPlayer (xbmc.Player):
-	'''Class to capture changes in the playing state of XBMC
-	'''
-
-	def __new__(type, settings):
-		return xbmc.Player.__new__(type)
-		
-	def __init__(self, settings):
-		xbmc.Player.__init__(self)
-		self.__settings = settings
-		self.__playbackChanged()
-
-	def __playbackChanged(self):
-		self.__settings.playing      = self.isPlaying()
-		self.__settings.playingVideo = self.isPlayingVideo()
-		self.__settings.playingAudio = self.isPlayingAudio()
-		
-		log("playing = %d video = %d audio = %d" % (self.__settings.playing, self.__settings.playingVideo, self.__settings.playingAudio))
-
-	def onPlayBackStarted(self):
-		self.__playbackChanged()
-
-	def onPlayBackStopped(self):
-		self.__playbackChanged()
-
-	def onPlayBackEnded(self):
-		self.__playbackChanged()
-		
 class Settings:
 	'''Class which contains all addon settings and xbmc state items of interest
 	'''
@@ -86,7 +58,7 @@ class Settings:
 		'''
 		self.rev = 0
 		self.__monitor = MyMonitor(self)
-		self.__player = MyPlayer(self)
+		self.__player = xbmc.Player()
 		self.readSettings()
 		
 	def __del__(self):
@@ -112,6 +84,5 @@ class Settings:
 	def grabbing(self):
 		'''Check if we grabbing is requested based on the current state and settings
 		'''
-		return self.enable \
-			and (self.playing and self.playingVideo) \
+		return self.enable and self.__player.isPlayingVideo() \
 			and (self.enableScreensaver or not self.screensaver)
