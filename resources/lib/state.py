@@ -82,7 +82,7 @@ class ConnectedState:
 		
 		# create the capture object
 		self.__capture = xbmc.RenderCapture()
-		self.__capture.capture(64, 64, xbmc.CAPTURE_FLAG_CONTINUOUS)
+		self.__capture.capture(64, 64)
 		
 	def __del__(self):
 		'''Destructor
@@ -101,7 +101,8 @@ class ConnectedState:
 		
 		# capture an image
 		self.__capture.waitForCaptureStateChangeEvent(200)
-		if self.__capture.getCaptureState() == xbmc.CAPTURE_STATE_DONE:
+		captureState = self.__capture.getCaptureState()
+		if captureState == xbmc.CAPTURE_STATE_DONE:
 			# retrieve image data and reformat into rgb format
 			data = self.__capture.getImage()
 			if self.__capture.getImageFormat() == 'ARGB':
@@ -117,7 +118,12 @@ class ConnectedState:
 				# unable to send image. notify and go to the error state
 				notify(xbmcaddon.Addon().getLocalizedString(32101))
 				return ErrorState(self.__settings)
+			
+		if captureState != xbmc.CAPTURE_STATE_WORKING:		
+			#the current capture is processed or it has failed, we request a new one
+			self.__capture.capture(64, 64)
 				
+		#limit the maximum number of frames sent to hyperion		
 		xbmc.sleep(100)
 			
 		return self
