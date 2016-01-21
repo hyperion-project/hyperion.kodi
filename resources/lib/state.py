@@ -66,7 +66,7 @@ class ConnectedState:
 	'''
 	State class when connected to Hyperion and grabbing video
 	'''
-	
+
 	def __init__(self, settings):
 		'''Constructor
 			- settings: Settings structure
