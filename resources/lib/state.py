@@ -148,7 +148,7 @@ class ConnectedState:
 				self.__capture.capture(self.__settings.capture_width, self.__settings.capture_height)
 
 		#limit the maximum number of frames sent to hyperion
-		xbmc.sleep( int(1. / self.__settings.framerate) * 1000 )
+		xbmc.sleep( int(1. / self.__settings.framerate * 1000) )
 
 		return self
 
