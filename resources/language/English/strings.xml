@@ -7,7 +7,10 @@
 	<string id="32005">Hyperion priority</string>
 	<string id="32006">Reconnect timeout (s)</string>
 	<string id="32007">Enable when on screensaver</string>
-	
+	<string id="32008">Width of capture</string>
+	<string id="32009">Height of capture</string>
+	<string id="32010">Framerate</string>
 	<string id="32100">Unable to connect to Hyperion</string>
 	<string id="32101">Unable to send image to Hyperion</string>
+
 </strings>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.service.hyperion" name="Hyperion ambilight" version="1.0.0" provider-name="poljvd|tvdzwan">
+<addon id="script.service.hyperion" name="Hyperion ambilight" version="1.0.1" provider-name="poljvd|tvdzwan">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -11,6 +11,6 @@
 	<website>https://github.com/tvdzwan/hyperion/wiki</website>
 	<source>https://github.com/poljvd/script.service.hyperion</source>
 	<forum></forum>
-	<email></email>    
+	<email></email>
   </extension>
 </addon>

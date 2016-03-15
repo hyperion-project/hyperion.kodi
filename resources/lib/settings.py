@@ -1,6 +1,6 @@
 '''
     XBMC video capturer for Hyperion
-	
+
 	Copyright (c) 2013 Hyperion Team
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,7 +29,7 @@ from misc import log
 class MyMonitor (xbmc.Monitor):
 	'''Class to capture changes in settings and screensaver state
 	'''
-	
+
 	def __init__(self, settings):
 		xbmc.Monitor.__init__(self)
 		self.__settings = settings
@@ -38,21 +38,21 @@ class MyMonitor (xbmc.Monitor):
 
 	def onAbortRequested(self):
 		self.__settings.abort = False
-		
+
 	def onSettingsChanged(self):
 		self.__settings.readSettings()
-	  
+
 	def onScreensaverDeactivated(self):
 		self.__settings.screensaver = False
-	  
-	def onScreensaverActivated(self):    
+
+	def onScreensaverActivated(self):
 		self.__settings.screensaver = True
 
-		
+
 class Settings:
 	'''Class which contains all addon settings and xbmc state items of interest
 	'''
-	
+
 	def __init__(self):
 		'''Constructor
 		'''
@@ -60,13 +60,13 @@ class Settings:
 		self.__monitor = MyMonitor(self)
 		self.__player = xbmc.Player()
 		self.readSettings()
-		
+
 	def __del__(self):
 		'''Destructor
 		'''
 		del self.__monitor
 		del self.__player
-		
+
 	def readSettings(self):
 		'''(Re-)read all settings
 		'''
@@ -78,9 +78,13 @@ class Settings:
 		self.port = int(addon.getSetting("hyperion_port"))
 		self.priority = int(addon.getSetting("hyperion_priority"))
 		self.timeout = int(addon.getSetting("reconnect_timeout"))
+		self.capture_width = int(addon.getSetting("capture_width"))
+		self.capture_height = int(addon.getSetting("capture_height"))
+		self.framerate = int(addon.getSetting("framerate"))
+
 		self.showErrorMessage = True
 		self.rev += 1
-		
+
 	def grabbing(self):
 		'''Check if we grabbing is requested based on the current state and settings
 		'''

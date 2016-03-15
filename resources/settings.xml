@@ -7,5 +7,8 @@
 		<setting id="hyperion_port" type="number" label="32004" default="19445" />
 		<setting id="hyperion_priority" type="number" label="32005" default="900" />
 		<setting id="reconnect_timeout" type="number" label="32006" default="30" />
+		<setting id="capture_width" type="number" label="32008" default="64" />
+		<setting id="capture_height" type="number" label="32009" default="64" />
+		<setting id="framerate" type="number" label="32010" default="20" />
 	</category>
 </settings>
