@@ -27,6 +27,9 @@ import xbmcaddon
 from hyperion.Hyperion import Hyperion
 from misc import log
 from misc import notify
+X_SIZE = 300
+Y_SIZE = 300
+SLEEP_PER_FRAME = 30
 
 class DisconnectedState:
 	'''
@@ -85,7 +88,7 @@ class ConnectedState:
 		
 		# create the capture object
 		self.__capture = xbmc.RenderCapture()
-		self.__capture.capture(64, 64)
+		self.__capture.capture(X_SIZE, Y_SIZE)
 		
 	def __del__(self):
 		'''Destructor
@@ -145,10 +148,10 @@ class ConnectedState:
 		if self.__useLegacyApi:
 			if self.__captureState != xbmc.CAPTURE_STATE_WORKING:
 				#the current capture is processed or it has failed, we request a new one
-				self.__capture.capture(64, 64)
+				self.__capture.capture(X_SIZE, Y_SIZE)
 				
 		#limit the maximum number of frames sent to hyperion		
-		xbmc.sleep(100)
+		xbmc.sleep(SLEEP_PER_FRAME)
 			
 		return self
 			
