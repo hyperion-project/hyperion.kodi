@@ -1,7 +1,7 @@
 '''
-    XBMC video capturer for Hyperion
+    Kodi video capturer for Hyperion
 	
-	Copyright (c) 2013 Hyperion Team
+	Copyright (c) 2013-2016 Hyperion Team
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
@@ -25,13 +25,13 @@ import xbmc
 import xbmcaddon
 
 def log(msg):
-	'''Write a debug message to the XBMC log
+	'''Write a debug message to the Kodi log
 	'''
 	addon = xbmcaddon.Addon()
 	xbmc.log("### [%s] - %s" % (addon.getAddonInfo('name'),msg,), level=xbmc.LOGDEBUG)
 
 def notify(msg):
-	'''Show a notification in XBMC
+	'''Show a notification in Kodi
 	'''
 	addon = xbmcaddon.Addon()
 	xbmc.executebuiltin("XBMC.Notification(%s,%s,%s,%s)" % \
