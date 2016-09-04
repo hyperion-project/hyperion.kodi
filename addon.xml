@@ -2,6 +2,8 @@
 <addon id="script.service.hyperion" name="Hyperion Ambilight" version="1.0.2" provider-name="hyperion-project">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.protobuf" version="2.5.0"/>
+    <import addon="script.module.pil" version="1.1.7"/>
   </requires>
   <extension point="xbmc.service" library="addon.py" start="login"></extension>
   <extension point="xbmc.addon.metadata">

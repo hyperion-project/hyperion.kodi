@@ -1,3 +1,5 @@
+1.0.3
+- remove protobuf library
 1.0.2
 - Translate to DE and extend description
 - New icon and fanart
