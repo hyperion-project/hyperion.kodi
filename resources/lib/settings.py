@@ -82,10 +82,7 @@ class Settings:
 		self.capture_height = int(addon.getSetting("capture_height"))
 
 		# Hack around Kodi's settings readout limitations
-		useDefaultDelay = False;
-		if addon.getSetting("use_default_delay") == 'true':
-			useDefaultDelay = True
-		self.useDefaultDelay = useDefaultDelay
+		self.useDefaultDelay = addon.getSetting('use_default_delay').lower() == 'true'
 
 		self.delay = int(addon.getSetting("delay"))
 		self.delay24 = int(addon.getSetting("delay24"))
