@@ -85,11 +85,7 @@ class ConnectedState:
         # try to connect to hyperion
         self.__hyperion = Hyperion(self.__settings.address, self.__settings.port)
 
-        # Force clearing of priority (mainly for Orbs)
-        xbmc.sleep(1000)
-        self.__hyperion.clear(self.__settings.priority)
-        xbmc.sleep(1000)
-        self.__hyperion.clear(self.__settings.priority)
+        self.clear_priority()
 
         # create the capture object
         self.__capture = xbmc.RenderCapture()
@@ -104,17 +100,20 @@ class ConnectedState:
         del self.__data
         del self.__useLegacyApi
 
+    def clear_priority(self):
+        # Force clearing of priority (mainly for forwarded instances)
+        xbmc.sleep(1000)
+        self.__hyperion.clear(self.__settings.priority)
+        xbmc.sleep(1000)
+        self.__hyperion.clear(self.__settings.priority)
+
     def execute(self):
         '''Execute the state
           - return: The new state to execute
         '''
         # check if we still need to grab
         if not self.__settings.grabbing():
-            # Force clearing of priority (mainly for Orbs)
-            xbmc.sleep(1000)
-            self.__hyperion.clear(self.__settings.priority)
-            xbmc.sleep(1000)
-            self.__hyperion.clear(self.__settings.priority)
+            self.clear_priority()
 
             # return to the disconnected state
             return DisconnectedState(self.__settings)
@@ -157,11 +156,7 @@ class ConnectedState:
                 notify(xbmcaddon.Addon().getLocalizedString(32101))
                 return ErrorState(self.__settings)
         else:
-            # Force clearing of priority (mainly for Orbs)
-            xbmc.sleep(1000)
-            self.__hyperion.clear(self.__settings.priority)
-            xbmc.sleep(1000)
-            self.__hyperion.clear(self.__settings.priority)
+            self.clear_priority()
 
         if self.__useLegacyApi:
             if self.__captureState != xbmc.CAPTURE_STATE_WORKING:
