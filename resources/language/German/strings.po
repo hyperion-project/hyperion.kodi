@@ -54,6 +54,42 @@ msgctxt "#32010"
 msgid "Frame rate (fps)"
 msgstr "Bildfrequenz (fps)"
 
+msgctxt "#33001"
+msgid "Verzögerungen"
+msgstr ""
+
+msgctxt "#33002"
+msgid "Verzögerung Standard (ms)"
+msgstr "Wird nur verwendet wenn FPS kein Match ist"
+
+msgctxt "#33003"
+msgid "Verzögerung für 23/24FPS (ms)"
+msgstr ""
+
+msgctxt "#33004"
+msgid "Verzögerung für 25FPS (ms)"
+msgstr ""
+
+msgctxt "#33005"
+msgid "Verzögerung für 50FPS (ms)"
+msgstr ""
+
+msgctxt "#33006"
+msgid "Verzögerung für 59FPS (ms)"
+msgstr ""
+
+msgctxt "#33007"
+msgid "Verzögerung für 60FPS (ms)"
+msgstr ""
+
+msgctxt "#33100"
+msgid "Die Standardverzögerung wird nur verwendet, wenn unter FPS nicht übereinstimmt"
+msgstr ""
+
+msgctxt "#33200"
+msgid "Verwenden Sie immer die Standardverzögerung"
+msgstr ""
+
 msgctxt "#32100"
 msgid "Error: Unable to connect to Hyperion. Wrong IP-address?"
 msgstr "Fehler: Kann keine Verbindung zu Hyperion aufbauen. Falsche IP-Adresse?"

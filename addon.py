@@ -34,6 +34,7 @@ sys.path.append(xbmc.translatePath(os.path.join(__cwd__, 'resources', 'lib')))
 		
 from settings import Settings
 from state import DisconnectedState
+from hyperion.Hyperion import Hyperion
 
 if  __name__ == "__main__":
 	# read settings
