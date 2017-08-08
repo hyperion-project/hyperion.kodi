@@ -80,7 +80,16 @@ class Settings:
 		self.timeout = int(addon.getSetting("reconnect_timeout"))
 		self.capture_width = int(addon.getSetting("capture_width"))
 		self.capture_height = int(addon.getSetting("capture_height"))
-		self.framerate = int(addon.getSetting("framerate"))
+
+		# Hack around Kodi's settings readout limitations
+		self.useDefaultDelay = addon.getSetting('use_default_delay').lower() == 'true'
+
+		self.delay = int(addon.getSetting("delay"))
+		self.delay24 = int(addon.getSetting("delay24"))
+		self.delay25 = int(addon.getSetting("delay25"))
+		self.delay50 = int(addon.getSetting("delay50"))
+		self.delay59 = int(addon.getSetting("delay59"))
+		self.delay60 = int(addon.getSetting("delay60"))
 
 		self.showErrorMessage = True
 		self.rev += 1

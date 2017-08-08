@@ -54,6 +54,42 @@ msgctxt "#32010"
 msgid "Frame rate (fps)"
 msgstr ""
 
+msgctxt "#33001"
+msgid "Delays"
+msgstr ""
+
+msgctxt "#33002"
+msgid "Delay default (ms)"
+msgstr ""
+
+msgctxt "#33003"
+msgid "Delay 23/24FPS (ms)"
+msgstr ""
+
+msgctxt "#33004"
+msgid "Delay 25FPS (ms)"
+msgstr ""
+
+msgctxt "#33005"
+msgid "Delay 50FPS (ms)"
+msgstr ""
+
+msgctxt "#33006"
+msgid "Delay 59FPS (ms)"
+msgstr ""
+
+msgctxt "#33007"
+msgid "Delay 60FPS (ms)"
+msgstr ""
+
+msgctxt "#33100"
+msgid "Default delay is only used if below FPS isn't matched"
+msgstr ""
+
+msgctxt "#33200"
+msgid "Always use default delay"
+msgstr ""
+
 msgctxt "#32100"
 msgid "Error: Unable to connect to Hyperion. Wrong IP-address?"
 msgstr ""

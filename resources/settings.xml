@@ -11,6 +11,16 @@
 		<setting label="32102" type="lsep"/>
 		<setting id="capture_width" type="number" label="32008" default="64" />
 		<setting id="capture_height" type="number" label="32009" default="64" />
-		<setting id="framerate" type="number" label="32010" default="10" />
+	</category>
+	<category label="33001">
+		<setting id="use_default_delay" type="bool" label="33200" default="true" />
+		<setting id="delay" type="number" label="33002" default="0" />
+		 <setting type="sep"/>
+		<setting label="33100" type="lsep"/>
+		<setting id="delay24" type="number" label="33003" default="0" />
+		<setting id="delay25" type="number" label="33004" default="0" />
+		<setting id="delay50" type="number" label="33005" default="0" />
+		<setting id="delay59" type="number" label="33006" default="0" />
+		<setting id="delay60" type="number" label="33007" default="0" />
 	</category>
 </settings>
