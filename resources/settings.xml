@@ -7,6 +7,7 @@
 		<setting id="hyperion_port" type="number" label="32004" default="19445" />
 		<setting id="hyperion_priority" type="number" label="32005" default="800" />
 		<setting id="reconnect_timeout" type="number" label="32006" default="30" />
+		<setting id="display_notifications" type="bool" label="32011" default="true" />
 		 <setting type="sep"/>
 		<setting label="32102" type="lsep"/>
 		<setting id="capture_width" type="number" label="32008" default="64" />

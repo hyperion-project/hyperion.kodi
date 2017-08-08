@@ -34,5 +34,6 @@ def notify(msg):
 	'''Show a notification in Kodi
 	'''
 	addon = xbmcaddon.Addon()
-	xbmc.executebuiltin("XBMC.Notification(%s,%s,%s,%s)" % \
-		(addon.getAddonInfo('name'), msg, 1000, addon.getAddonInfo('icon')))
+	if addon.getSetting("display_notifications") == 'true':
+		xbmc.executebuiltin("XBMC.Notification(%s,%s,%s,%s)" % \
+			(addon.getAddonInfo('name'), msg, 1000, addon.getAddonInfo('icon')))
