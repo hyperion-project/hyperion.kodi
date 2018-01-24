@@ -72,8 +72,8 @@ class Settings:
 		'''
 		log("Reading settings")
 		addon = xbmcaddon.Addon()
-		self.enable = bool(addon.getSetting("hyperion_enable"))
-		self.enableScreensaver = bool(addon.getSetting("screensaver_enable"))
+		self.enable = addon.getSetting('hyperion_enable').lower() == 'true'
+		self.enableScreensaver = addon.getSetting('screensaver_enable').lower()  == 'true'
 		self.address = addon.getSetting("hyperion_ip")
 		self.port = int(addon.getSetting("hyperion_port"))
 		self.priority = int(addon.getSetting("hyperion_priority"))
