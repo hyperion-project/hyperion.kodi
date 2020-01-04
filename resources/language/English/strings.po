@@ -54,6 +54,10 @@ msgctxt "#32010"
 msgid "Frame rate (fps)"
 msgstr ""
 
+msgctxt "#32011"
+msgid "Display notifications"
+msgstr ""
+
 msgctxt "#33001"
 msgid "Delays"
 msgstr ""
