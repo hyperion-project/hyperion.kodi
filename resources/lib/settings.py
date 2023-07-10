@@ -35,19 +35,39 @@ class Settings:
     def __init__(self, settings: xbmcaddon.Settings) -> None:
         self.rev = 0
         self._settings = settings
+        self.needs_reconnection = False
+        self._address = None
+        self._port = None
         self.read_settings()
+
+    @property
+    def address(self) -> str:
+        return self._address
+
+    @address.setter
+    def address(self, value: str) -> None:
+        self.needs_reconnection = self._address != value
+        self._address = value
+
+    @property
+    def port(self) -> int:
+        return self._port
+
+    @port.setter
+    def port(self, value: int) -> None:
+        self.needs_reconnection = self._port != value
+        self._port = value
 
     def read_settings(self) -> None:
         """Read all settings"""
         settings = self._settings
         self.enable = settings.getBool("hyperion_enable")
         self.enable_screensaver = settings.getBool("screensaver_enable")
-        self.address = settings.getString("hyperion_ip")
-        self.port = settings.getInt("hyperion_port")
         self.priority = settings.getInt("hyperion_priority")
         self.timeout = settings.getInt("reconnect_timeout")
         self.capture_width = settings.getInt("capture_width")
-        self.capture_height = settings.getInt("capture_height")
         self.framerate = settings.getInt("framerate")
         self.sleep_time = int(1.0 / self.framerate * 1000)
+        self.address = settings.getString("hyperion_ip")
+        self.port = settings.getInt("hyperion_port")
         self.rev += 1

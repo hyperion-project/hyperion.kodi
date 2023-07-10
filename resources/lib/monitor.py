@@ -22,6 +22,7 @@
     THE SOFTWARE.
 """
 import xbmc
+from PIL import Image
 
 from resources.lib.hyperion.hyperion import Hyperion
 from resources.lib.misc import MessageHandler
@@ -45,6 +46,8 @@ class HyperionMonitor(xbmc.Monitor):
 
     def onSettingsChanged(self) -> None:
         self.settings.read_settings()
+        if self.settings.needs_reconnection and self.grabbing:
+            self.connect()
 
     def onScreensaverDeactivated(self) -> None:
         self._screensaver = False
@@ -95,31 +98,52 @@ class HyperionMonitor(xbmc.Monitor):
         settings = self.settings
         self._hyperion = Hyperion(settings.address, settings.port)
         self._capture = xbmc.RenderCapture()
-        self._capture.capture(
-            settings.capture_width, settings.capture_height
+
+    def get_capture_size(self):
+        width = self.settings.capture_width
+        aspect_ratio = self._capture.getAspectRatio()
+        height = int(width / aspect_ratio)
+        capture_size = width, height
+        expected_capture_size = width * height * 4  # size * 4 bytes - RGBA
+        self.output_handler.log(
+            f"Aspect_ratio: {aspect_ratio}, Capture Size: {capture_size}, "
+            f"expected_capture_size: {expected_capture_size}"
         )
+        return capture_size, expected_capture_size
 
     def connected_state(self):
         if not self.grabbing:
+            del self._hyperion
             return self.disconnected_state
 
-        if data := self._capture.getImage(self.settings.sleep_time):
-            # v17+ use BGRA format, converting to RGB
-            del data[3::4]
-            data[::3], data[2::3] = data[2::3], data[::3]
+        capture_size, expected_capture_size = self.get_capture_size()
+        self._capture.capture(*capture_size)
+        cap_image = self._capture.getImage(self.settings.sleep_time)
+        if cap_image is None or len(cap_image) < expected_capture_size:
+            self.output_handler.log(
+                f"Captured image is none or < expected. "
+                f"captured: {len(cap_image) if cap_image is not None else 'None'}, "
+                f"expected: {expected_capture_size}"
+            )
+            xbmc.sleep(250)
+            return self.connected_state
 
-            try:
-                # send image to hyperion
-                self._hyperion.send_image(
-                    self._capture.getWidth(),
-                    self._capture.getHeight(),
-                    data,
-                    self.settings.priority,
-                    500,
-                )
-            except Exception:
-                # unable to send image. notify and go to the error state
-                self.output_handler.notify(32101)
-                return self.error_state
+        # v17+ use BGRA format, converting to RGB
+        image = Image.frombytes("RGB", capture_size, bytes(cap_image), 'raw', "BGRX")
+        self.output_handler.log(f"Image size: ({image.width},{image.height})")
+
+        try:
+            # send image to hyperion
+            self._hyperion.send_image(
+                image.width,
+                image.height,
+                image.tobytes(),
+                self.settings.priority,
+                500,
+            )
+        except Exception:
+            # unable to send image. notify and go to the error state
+            self.output_handler.notify(32101)
+            return self.error_state
 
         return self.connected_state
