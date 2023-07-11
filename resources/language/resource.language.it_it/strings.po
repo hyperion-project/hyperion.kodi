@@ -11,93 +11,53 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: it-IT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
 msgid "General"
-msgstr ""
+msgstr "Generale"
 
 msgctxt "#32002"
 msgid "Enable addon (Grabbing)"
-msgstr ""
+msgstr "Abilita l'Addon (Acquisizione)"
 
 msgctxt "#32003"
-msgid "Hyperion host IP-address"
-msgstr ""
+msgid "Hyperion hostname or IP-address"
+msgstr "Nome host o indirizzo IP di Hyperion"
 
 msgctxt "#32004"
 msgid "Hyperion host PROTO-port"
-msgstr ""
+msgstr "Porta PROTO di Hyperion"
 
 msgctxt "#32005"
 msgid "Hyperion priority channel"
-msgstr ""
+msgstr "Canale prioritario di Hyperion"
 
 msgctxt "#32006"
 msgid "Reconnect timeout (s)"
-msgstr ""
+msgstr "Timeout riconnessione (s)"
 
 msgctxt "#32007"
 msgid "Enable when on screensaver"
-msgstr ""
+msgstr "Abilita con lo screen saver"
 
 msgctxt "#32008"
 msgid "Grabber picture width (pixel)"
-msgstr ""
-
-msgctxt "#32009"
-msgid "Grabber picture height (pixel)"
-msgstr ""
+msgstr "Larghezza immagine acquisita (pixel)"
 
 msgctxt "#32010"
 msgid "Frame rate (fps)"
-msgstr ""
-
-msgctxt "#33001"
-msgid "Delays"
-msgstr ""
-
-msgctxt "#33002"
-msgid "Delay default (ms)"
-msgstr ""
-
-msgctxt "#33003"
-msgid "Delay 23/24FPS (ms)"
-msgstr ""
-
-msgctxt "#33004"
-msgid "Delay 25FPS (ms)"
-msgstr ""
-
-msgctxt "#33005"
-msgid "Delay 50FPS (ms)"
-msgstr ""
-
-msgctxt "#33006"
-msgid "Delay 59FPS (ms)"
-msgstr ""
-
-msgctxt "#33007"
-msgid "Delay 60FPS (ms)"
-msgstr ""
-
-msgctxt "#33100"
-msgid "Default delay is only used if below FPS isn't matched"
-msgstr ""
-
-msgctxt "#33200"
-msgid "Always use default delay"
-msgstr ""
+msgstr "Frame rate (fps)"
 
 msgctxt "#32100"
-msgid "Error: Unable to connect to Hyperion. Wrong IP-address?"
-msgstr ""
+msgid "Error: Unable to connect to Hyperion. Wrong hostname or IP-address?"
+msgstr "Errore: Impossible connettersi a Hyperion. Nome host o indirizzo IP sbagliato?"
 
 msgctxt "#32101"
 msgid "Error: Unable to send image to Hyperion. Wrong PROTO-port?"
-msgstr ""
+msgstr "Errore: Impossibile inviare l'immagine a Hyperion. porta PROTO sbagliata?"
 
 msgctxt "#32102"
 msgid "ATTENTION: Higher the values below may lead to performance issues"
-msgstr ""
+msgstr "ATTENZIONE: Alzare i valori seguenti può portare a problemi di performance"

@@ -11,7 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: de-DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#32001"
@@ -23,8 +23,8 @@ msgid "Enable addon (Grabbing)"
 msgstr "Aktiviere das Addon (Grabbing)"
 
 msgctxt "#32003"
-msgid "Hyperion host IP-address"
-msgstr "Hyperion Host IP-Addresse"
+msgid "Hyperion hostname or IP-address"
+msgstr "Hyperion Hostname oder IP-Adresse"
 
 msgctxt "#32004"
 msgid "Hyperion host PROTO-port"
@@ -46,53 +46,13 @@ msgctxt "#32008"
 msgid "Grabber picture width (pixel)"
 msgstr "Bildbreite (pixel)"
 
-msgctxt "#32009"
-msgid "Grabber picture height (pixel)"
-msgstr "Bildhöhe (pixel)"
-
 msgctxt "#32010"
 msgid "Frame rate (fps)"
 msgstr "Bildfrequenz (fps)"
 
-msgctxt "#33001"
-msgid "Verzögerungen"
-msgstr ""
-
-msgctxt "#33002"
-msgid "Verzögerung Standard (ms)"
-msgstr "Wird nur verwendet wenn FPS kein Match ist"
-
-msgctxt "#33003"
-msgid "Verzögerung für 23/24FPS (ms)"
-msgstr ""
-
-msgctxt "#33004"
-msgid "Verzögerung für 25FPS (ms)"
-msgstr ""
-
-msgctxt "#33005"
-msgid "Verzögerung für 50FPS (ms)"
-msgstr ""
-
-msgctxt "#33006"
-msgid "Verzögerung für 59FPS (ms)"
-msgstr ""
-
-msgctxt "#33007"
-msgid "Verzögerung für 60FPS (ms)"
-msgstr ""
-
-msgctxt "#33100"
-msgid "Die Standardverzögerung wird nur verwendet, wenn unter FPS nicht übereinstimmt"
-msgstr ""
-
-msgctxt "#33200"
-msgid "Verwenden Sie immer die Standardverzögerung"
-msgstr ""
-
 msgctxt "#32100"
-msgid "Error: Unable to connect to Hyperion. Wrong IP-address?"
-msgstr "Fehler: Kann keine Verbindung zu Hyperion aufbauen. Falsche IP-Adresse?"
+msgid "Error: Unable to connect to Hyperion. Wrong hostname or IP-address?"
+msgstr "Fehler: Kann keine Verbindung zu Hyperion aufbauen. Falscher Hostname oder IP-Adresse?"
 
 msgctxt "#32101"
 msgid "Error: Unable to send image to Hyperion. Wrong PROTO-port?"
