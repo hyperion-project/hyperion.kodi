@@ -105,10 +105,6 @@ class HyperionMonitor(xbmc.Monitor):
         height = int(width / aspect_ratio)
         capture_size = width, height
         expected_capture_size = width * height * 4  # size * 4 bytes - RGBA
-        self.output_handler.log(
-            f"Aspect_ratio: {aspect_ratio}, Capture Size: {capture_size}, "
-            f"expected_capture_size: {expected_capture_size}"
-        )
         return capture_size, expected_capture_size
 
     def connected_state(self):
@@ -130,7 +126,6 @@ class HyperionMonitor(xbmc.Monitor):
 
         # v17+ use BGRA format, converting to RGB
         image = Image.frombytes("RGB", capture_size, bytes(cap_image), 'raw', "BGRX")
-        self.output_handler.log(f"Image size: ({image.width},{image.height})")
 
         try:
             # send image to hyperion
@@ -139,7 +134,7 @@ class HyperionMonitor(xbmc.Monitor):
                 image.height,
                 image.tobytes(),
                 self.settings.priority,
-                500,
+                self.settings.sleep_time,
             )
         except Exception:
             # unable to send image. notify and go to the error state
