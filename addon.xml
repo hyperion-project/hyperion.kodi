@@ -13,7 +13,6 @@
     <description lang="en_GB">Hyperion is an opensource Bias or Ambient Lighting implementation which runs on many devices.[CR]This addon sends through the Hyperion PROTO-port your current picture to your Hyperion daemon for further processing like black border detection or smoothing.</description>
     <description lang="de_DE">Hyperion ist ein Bias oder Ambient Lighting System, welches auf vielen Plattformen lauffähig ist.[CR]Dieses Addon sendet über den PROTO-Port laufend Bilder an Hyperion.</description>
     <description lang="it_IT">Hyperion è un'implentazione open source di Bias o Ambient Lighting che supporta molti dispositivi.[CR]Questo addon invia l'immagine corrente alla porta PROTO del demone Hyperion per ulteriori elaborazioni come il rilevamento bordi neri o lo smoothing.</description>
-    <disclaimer lang="en_GB"></disclaimer>
     <language>en de he</language>
     <platform>all</platform>
     <forum>https://hyperion-project.org/forum</forum>
