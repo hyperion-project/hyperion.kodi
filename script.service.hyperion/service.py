@@ -1,7 +1,7 @@
 """
     Kodi video capturer for Hyperion
     
-    Copyright (c) 2013-1016 Hyperion Team
+    Copyright (c) 2013-2023 Hyperion Team
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

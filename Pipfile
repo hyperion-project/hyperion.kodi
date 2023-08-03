@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+kodistubs = "*"
+kodi-addon-checker = "*"
+
+[requires]
+python_version = "3.11"
+
+[scripts]
+pre-commit = "pre-commit install"
+lint = "pre-commit run --all"
+check = "kodi-addon-checker --branch nexus --allow-folder-id-mismatch script.service.hyperion-control"

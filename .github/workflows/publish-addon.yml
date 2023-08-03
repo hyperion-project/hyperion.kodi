@@ -1,0 +1,45 @@
+name: Check and publish addon
+
+on: [push]
+
+env:
+  ADDON_NAME: script.service.hyperion
+  TARGET_KODI_VER: nexus
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    - name: Install addon checker
+      run: |
+        pip install -q kodi-addon-checker
+    - name: Check with addon-checker
+      run: |
+        kodi-addon-checker --branch $TARGET_KODI_VER --allow-folder-id-mismatch $ADDON_NAME
+
+  publish:
+    runs-on: ubuntu-latest
+
+    needs: check
+    if: github.ref_type == 'tag'
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+    - name: Install addon submitter
+      run: |
+        pip install -q git+https://github.com/xbmc/kodi-addon-submitter.git
+    - name: Submit addon
+      run: |
+        submit-addon -r repo-scripts -b $TARGET_KODI_VER -s --pull-request $ADDON_NAME
+      env:
+        GH_USERNAME: ${{ github.actor }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        EMAIL: "${{ github.actor }}@users.noreply.github.com"

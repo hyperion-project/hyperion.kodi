@@ -16,39 +16,39 @@ msgstr ""
 
 msgctxt "#32001"
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgctxt "#32002"
 msgid "Enable addon (Grabbing)"
-msgstr ""
+msgstr "Enable addon (Grabbing)"
 
 msgctxt "#32003"
 msgid "Hyperion hostname or IP-address"
-msgstr ""
+msgstr "Hyperion hostname or IP-address"
 
 msgctxt "#32004"
 msgid "Hyperion host PROTO-port"
-msgstr ""
+msgstr "Hyperion host PROTO-port"
 
 msgctxt "#32005"
 msgid "Hyperion priority channel"
-msgstr ""
+msgstr "Hyperion priority channel"
 
 msgctxt "#32006"
 msgid "Reconnect timeout (s)"
-msgstr ""
+msgstr "Reconnect timeout (s)"
 
 msgctxt "#32007"
 msgid "Enable when on screensaver"
-msgstr ""
+msgstr "Enable when on screensaver"
 
 msgctxt "#32008"
 msgid "Grabber picture width (pixel)"
-msgstr ""
+msgstr "Grabber picture width (pixel)"
 
 msgctxt "#32010"
 msgid "Frame rate (fps)"
-msgstr ""
+msgstr "Frame rate (fps)"
 
 msgctxt "#32100"
 msgid "Error: Unable to connect to Hyperion. Wrong hostname or IP-address?"
