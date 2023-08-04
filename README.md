@@ -4,7 +4,6 @@
 [![Join Translation](https://img.shields.io/badge/POEditor-translate-green.svg)](https://poeditor.com/join/project/yKr4KrF7G2)
 [![Forum](https://img.shields.io/website/https/hyperion-project.org.svg?label=Forum&down_color=red&down_message=offline&up_color=4bc51d&up_message=online&logo=homeadvisor&logoColor=white)](https://www.hyperion-project.org)
 
-
 Kodi add-on to capture video data and send it to Hyperion.
 
 **Note:** This plugin does not currently work for Kodi running on Raspberry Pi. There is an outstanding Kodi fix for that.
