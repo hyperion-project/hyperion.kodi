@@ -35,7 +35,7 @@ class MessageHandler:
         self._addon_name = addon.getAddonInfo("name")
         self._addon_icon = addon.getAddonInfo("icon")
 
-    def log(self, message: str, level=xbmc.LOGDEBUG) -> None:
+    def log(self, message: str, level: int = xbmc.LOGDEBUG) -> None:
         """Writes the message to the logger with the addon name as prefix."""
         xbmc.log(f"[{self._addon_name}] - {message}", level=level)
 

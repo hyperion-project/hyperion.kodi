@@ -36,8 +36,8 @@ class Settings:
         self.rev = 0
         self._settings = settings
         self.needs_reconnection = False
-        self._address = None
-        self._port = None
+        self._address = "localhost"
+        self._port = 19445
         self.read_settings()
 
     @property
