@@ -21,8 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
+# mypy: ignore-errors
 import socket
 import struct
+from typing import Any
 
 from .message_pb2 import ClearRequest
 from .message_pb2 import ColorRequest
@@ -62,7 +64,7 @@ class Hyperion:
         # close the socket
         self._socket.close()
 
-    def send_color(self, color, priority, duration=-1) -> None:
+    def send_color(self, color: int, priority: int, duration: int = -1) -> None:
         """
         Send a static color to Hyperion.
 
@@ -79,7 +81,9 @@ class Hyperion:
         color_request.duration = duration
         self._send_message(request)
 
-    def send_image(self, width, height, data, priority, duration=-1) -> None:
+    def send_image(
+        self, width: int, height: int, data: bytes, priority: int, duration: int = -1
+    ) -> None:
         """
         Send an image to Hyperion.
 
@@ -100,7 +104,7 @@ class Hyperion:
         image_request.duration = duration
         self._send_message(request)
 
-    def clear(self, priority) -> None:
+    def clear(self, priority: int) -> None:
         """Clear the given priority channel.
 
         Args:
@@ -118,7 +122,7 @@ class Hyperion:
         request.command = HyperionRequest.CLEARALL
         self._send_message(request)
 
-    def _send_message(self, message: HyperionRequest) -> None:
+    def _send_message(self, message: Any) -> None:
         """
         Send the given proto message to Hyperion.
 

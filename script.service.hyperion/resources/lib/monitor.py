@@ -21,11 +21,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
+from collections.abc import Callable
+
 import xbmc
 from PIL import Image
+
 from resources.lib.hyperion.hyperion import Hyperion
 from resources.lib.misc import MessageHandler
 from resources.lib.settings import Settings
+
+State = Callable[[], "State"]
 
 
 class HyperionMonitor(xbmc.Monitor):
@@ -75,7 +80,7 @@ class HyperionMonitor(xbmc.Monitor):
         while not self.abortRequested():
             state = state()
 
-    def disconnected_state(self):
+    def disconnected_state(self) -> State:
         if not self.grabbing:
             xbmc.sleep(500)
             return self.disconnected_state
@@ -86,7 +91,7 @@ class HyperionMonitor(xbmc.Monitor):
             self.notify_error(32100)
             return self.error_state
 
-    def error_state(self):
+    def error_state(self) -> State:
         rev = self.settings.rev
         for _ in range(self.settings.timeout):
             if rev != self.settings.rev:
@@ -101,7 +106,7 @@ class HyperionMonitor(xbmc.Monitor):
         self._hyperion = Hyperion(settings.address, settings.port)
         self._capture = xbmc.RenderCapture()
 
-    def get_capture_size(self):
+    def get_capture_size(self) -> tuple[tuple[int, int], int]:
         width = self.settings.capture_width
         aspect_ratio = self._capture.getAspectRatio()
         height = int(width / aspect_ratio)
@@ -109,7 +114,7 @@ class HyperionMonitor(xbmc.Monitor):
         expected_capture_size = width * height * 4  # size * 4 bytes - RGBA
         return capture_size, expected_capture_size
 
-    def connected_state(self):
+    def connected_state(self) -> State:
         if not self.grabbing:
             del self._hyperion
             return self.disconnected_state

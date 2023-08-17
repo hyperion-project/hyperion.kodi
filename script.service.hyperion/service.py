@@ -29,7 +29,7 @@ from resources.lib.monitor import HyperionMonitor
 from resources.lib.settings import Settings
 
 
-def main():
+def main() -> None:
     addon = xbmcaddon.Addon()
     player = xbmc.Player()
     settings = Settings(addon.getSettings())
