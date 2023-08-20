@@ -1,25 +1,25 @@
 """
-    Kodi video capturer for Hyperion
+Kodi video capturer for Hyperion.
 
-    Copyright (c) 2013-2016 Hyperion Team
+Copyright (c) 2013-2023 Hyperion Team
 
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 """
 from __future__ import annotations
 
@@ -36,21 +36,24 @@ class Settings:
         self.rev = 0
         self._settings = settings
         self.needs_reconnection = False
-        self._address = None
-        self._port = None
+        self._address = "localhost"
+        self._port = 19445
         self.read_settings()
 
     @property
     def address(self) -> str:
+        """Hyperion server's hostname or IP-address."""
         return self._address
 
     @address.setter
     def address(self, value: str) -> None:
+        """Hyperion server's hostname or IP-address."""
         self.needs_reconnection = self._address != value
         self._address = value
 
     @property
     def port(self) -> int:
+        """Hyperion server port."""
         return self._port
 
     @port.setter
@@ -59,7 +62,7 @@ class Settings:
         self._port = value
 
     def read_settings(self) -> None:
-        """Read all settings"""
+        """Read all settings."""
         settings = self._settings
         self.enable = settings.getBool("hyperion_enable")
         self.enable_screensaver = settings.getBool("screensaver_enable")

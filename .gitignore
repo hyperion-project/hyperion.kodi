@@ -1,1 +1,14 @@
-.idea/
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# python
+*.pyo
+__pycache__
+.idea
+Pipfile.lock
+.mypy_cache
+.ruff_cache
