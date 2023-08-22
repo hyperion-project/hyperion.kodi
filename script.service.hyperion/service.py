@@ -24,17 +24,21 @@ THE SOFTWARE.
 
 import xbmc
 import xbmcaddon
-from resources.lib.misc import MessageHandler
+from resources.lib.gui import GuiHandler
+from resources.lib.logger import Logger
 from resources.lib.monitor import HyperionMonitor
-from resources.lib.settings import Settings
+from resources.lib.settings import SettingsManager
+
+ADDON_NAME = "script.service.hyperion"
 
 
 def main() -> None:
-    addon = xbmcaddon.Addon()
+    addon = xbmcaddon.Addon(ADDON_NAME)
+    logger = Logger(addon.getAddonInfo("name"))
+    settings_manager = SettingsManager(addon.getSettings(), logger)
     player = xbmc.Player()
-    settings = Settings(addon.getSettings())
-    output_handler = MessageHandler(addon)
-    monitor = HyperionMonitor(settings, player, output_handler)
+    output_handler = GuiHandler(addon, settings_manager)
+    monitor = HyperionMonitor(settings_manager, player, output_handler, logger)
     monitor.main_loop()
 
 
