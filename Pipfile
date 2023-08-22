@@ -15,4 +15,4 @@ python_version = "3.11"
 [scripts]
 pre-commit = "pre-commit install"
 lint = "pre-commit run --all"
-check = "kodi-addon-checker --branch nexus --allow-folder-id-mismatch script.service.hyperion-control"
+check = "kodi-addon-checker --branch nexus --allow-folder-id-mismatch script.service.hyperion"
