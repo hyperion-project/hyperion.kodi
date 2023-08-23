@@ -26,9 +26,10 @@ from collections.abc import Callable
 import xbmc
 from PIL import Image
 
+from resources.lib.gui import GuiHandler
 from resources.lib.hyperion.hyperion import Hyperion
-from resources.lib.misc import MessageHandler
-from resources.lib.settings import Settings
+from resources.lib.logger import Logger
+from resources.lib.settings import SettingsManager
 
 State = Callable[[], "State"]
 
@@ -37,11 +38,16 @@ class HyperionMonitor(xbmc.Monitor):
     """Class to capture changes in settings and screensaver state."""
 
     def __init__(
-        self, settings: Settings, player: xbmc.Player, output_handler: MessageHandler
+        self,
+        settings: SettingsManager,
+        player: xbmc.Player,
+        output_handler: GuiHandler,
+        logger: Logger,
     ) -> None:
         super().__init__()
         self.settings = settings
         self.output_handler = output_handler
+        self._logger = logger
         self._screensaver = xbmc.getCondVisibility("System.ScreenSaverActive")
         self._player = player
         self.show_error_message = True
@@ -50,7 +56,7 @@ class HyperionMonitor(xbmc.Monitor):
 
     def onSettingsChanged(self) -> None:
         self.settings.read_settings()
-        if self.settings.needs_reconnection and self.grabbing:
+        if self.grabbing:
             self.connect()
 
     def onScreensaverDeactivated(self) -> None:
@@ -72,7 +78,7 @@ class HyperionMonitor(xbmc.Monitor):
 
     def notify_error(self, label_id: int) -> None:
         if self.show_error_message:
-            self.output_handler.notify(label_id)
+            self.output_handler.notify_label(label_id)
             self.show_error_message = False
 
     def main_loop(self) -> None:
@@ -101,8 +107,10 @@ class HyperionMonitor(xbmc.Monitor):
         return self.disconnected_state
 
     def connect(self) -> None:
-        self.output_handler.log("Establishing connection to hyperion")
         settings = self.settings
+        self._logger.info(
+            f"Establishing connection to hyperion at {settings.address}:{settings.port}"
+        )
         self._hyperion = Hyperion(settings.address, settings.port)
         self._capture = xbmc.RenderCapture()
 
@@ -123,7 +131,7 @@ class HyperionMonitor(xbmc.Monitor):
         self._capture.capture(*capture_size)
         cap_image = self._capture.getImage(self.settings.sleep_time)
         if cap_image is None or len(cap_image) < expected_capture_size:
-            self.output_handler.log(
+            self._logger.debug(
                 f"Captured image is none or < expected. "
                 f"captured: {len(cap_image) if cap_image is not None else 'None'}, "
                 f"expected: {expected_capture_size}"
@@ -145,7 +153,7 @@ class HyperionMonitor(xbmc.Monitor):
             )
         except Exception:
             # unable to send image. notify and go to the error state
-            self.output_handler.notify(32101)
+            self.output_handler.notify_label(32101)
             return self.error_state
 
         return self.connected_state

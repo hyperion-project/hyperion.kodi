@@ -25,41 +25,30 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from resources.lib.logger import Logger
+
 if TYPE_CHECKING:
     import xbmcaddon
 
 
-class Settings:
+class SettingsManager:
     """Class which contains all addon settings."""
 
-    def __init__(self, settings: xbmcaddon.Settings) -> None:
+    def __init__(self, settings: xbmcaddon.Settings, logger: Logger) -> None:
+        self._logger = logger
         self.rev = 0
         self._settings = settings
-        self.needs_reconnection = False
-        self._address = "localhost"
-        self._port = 19445
+        self.address = "localhost"
+        self.port = 19445
+        self.enable: bool
+        self.enable_screensaver: bool
+        self.priority: int
+        self.timeout: int
+        self.capture_width: int
+        self.framerate: int
+        self.sleep_time: int
+
         self.read_settings()
-
-    @property
-    def address(self) -> str:
-        """Hyperion server's hostname or IP-address."""
-        return self._address
-
-    @address.setter
-    def address(self, value: str) -> None:
-        """Hyperion server's hostname or IP-address."""
-        self.needs_reconnection = self._address != value
-        self._address = value
-
-    @property
-    def port(self) -> int:
-        """Hyperion server port."""
-        return self._port
-
-    @port.setter
-    def port(self, value: int) -> None:
-        self.needs_reconnection = self._port != value
-        self._port = value
 
     def read_settings(self) -> None:
         """Read all settings."""
@@ -74,3 +63,16 @@ class Settings:
         self.address = settings.getString("hyperion_ip")
         self.port = settings.getInt("hyperion_port")
         self.rev += 1
+        self._log_settings()
+
+    def _log_settings(self) -> None:
+        log = self._logger.debug
+        log("Settings updated!")
+        log(f"Hyperion ip:            {self.address}")
+        log(f"Hyperion port:          {self.port}")
+        log(f"enabled:                {self.enable}")
+        log(f"enabled on screensaver: {self.enable_screensaver}")
+        log(f"priority:               {self.priority}")
+        log(f"timeout:                {self.timeout}")
+        log(f"capture width:          {self.capture_width}")
+        log(f"framerate:              {self.framerate}")
